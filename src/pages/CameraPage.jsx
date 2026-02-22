@@ -1,21 +1,15 @@
-import { useRef, useState } from "react";
+import React from "react";
 import Webcam from "react-webcam";
-
-/*
-  CameraPage
-  ----------
-  Handles:
-  - Loading state
-  - Camera permission
-  - Error handling
-  - Ready for AI integration
-*/
+import useCamera from "../hooks/useCamera";
 
 const CameraPage = () => {
-  const webcamRef = useRef(null);
-
-  const [cameraReady, setCameraReady] = useState(false);
-  const [cameraError, setCameraError] = useState(false);
+  const {
+    webcamRef,
+    cameraReady,
+    cameraError,
+    handleCameraReady,
+    handleCameraError,
+  } = useCamera();
 
   return (
     <div
@@ -27,27 +21,23 @@ const CameraPage = () => {
     >
       <h2>FocusLens Camera</h2>
 
-      {/* Loading state */}
       {!cameraReady && !cameraError && (
         <p>Initializing camera...</p>
       )}
 
-      {/* Error state */}
       {cameraError && (
         <p style={{ color: "red" }}>
           Camera access denied. Please allow permission and refresh.
         </p>
       )}
 
-      {/* Webcam */}
       <Webcam
         ref={webcamRef}
         audio={false}
         mirrored={false}
         screenshotFormat="image/jpeg"
-        onUserMedia={() => setCameraReady(true)}
-        onUserMediaError={() => setCameraError(true)}
-        mirror={false}
+        onUserMedia={handleCameraReady}
+        onUserMediaError={handleCameraError}
         style={{
           width: "100%",
           maxWidth: "700px",
