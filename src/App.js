@@ -1,7 +1,7 @@
-import LandingPage from "./pages/LandingPage";
+import CameraPage from "./pages/CameraPage";
 
 function App() {
-  return <LandingPage />;
+  return <CameraPage />;
 }
 
 export default App;
