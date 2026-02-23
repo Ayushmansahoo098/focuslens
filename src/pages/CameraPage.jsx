@@ -3,21 +3,27 @@ import Webcam from "react-webcam";
 import useCamera from "../hooks/useCamera";
 import useFocusSession from "../hooks/useFocusSession";
 
+// ── "away" state added here ──────────────────────────────────────────────────
 const stateConfig = {
-  idle: { label: "Ready to Start", color: "#6B6B6B", bg: "#EDE8F7", dot: "#6B6B6B" },
-  focused: { label: "Focused 🟢", color: "#16a34a", bg: "#dcfce7", dot: "#22c55e" },
-  distracted: { label: "Distracted 🔴", color: "#dc2626", bg: "#fee2e2", dot: "#ef4444" },
-  drowsy: { label: "Drowsy 🟡", color: "#d97706", bg: "#fef9c3", dot: "#f59e0b" },
+  idle:       { label: "Ready to Start",    color: "#6B6B6B", bg: "#EDE8F7", dot: "#6B6B6B" },
+  focused:    { label: "Focused 🟢",        color: "#16a34a", bg: "#dcfce7", dot: "#22c55e" },
+  distracted: { label: "Distracted 🔴",     color: "#dc2626", bg: "#fee2e2", dot: "#ef4444" },
+  drowsy:     { label: "Drowsy 🟡",         color: "#d97706", bg: "#fef9c3", dot: "#f59e0b" },
+  away:       { label: "Not in Frame 👤",   color: "#c2410c", bg: "#fff7ed", dot: "#f97316" },
 };
 
 const CameraPage = () => {
   const navigate = useNavigate();
+
+  // webcamRef comes from useCamera — we pass it into useFocusSession
+  // so face-api.js can read frames directly from the video element
   const { webcamRef, cameraReady, cameraError, handleCameraReady, handleCameraError } = useCamera();
+
   const {
     isRunning, elapsedTime, focusState, focusScore,
     distractionCount, bestStreak, currentStreak,
     startSession, stopSession, resetSession, formatTime,
-  } = useFocusSession();
+  } = useFocusSession(webcamRef); // ← pass webcamRef here
 
   const state = stateConfig[focusState] || stateConfig.idle;
 
@@ -81,9 +87,17 @@ const CameraPage = () => {
             <span style={{ fontWeight: "600", color: state.color, fontSize: "15px" }}>
               {state.label}
             </span>
-            <span style={{ color: "#6B6B6B", fontSize: "13px", marginLeft: "auto" }}>
-              Current streak: {currentStreak} intervals
-            </span>
+
+            {/* Show streak only when actually focused */}
+            {focusState === "away" ? (
+              <span style={{ color: "#c2410c", fontSize: "13px", marginLeft: "auto", fontWeight: "500" }}>
+                Return to your desk to resume scoring
+              </span>
+            ) : (
+              <span style={{ color: "#6B6B6B", fontSize: "13px", marginLeft: "auto" }}>
+                Current streak: {currentStreak} intervals
+              </span>
+            )}
           </div>
         )}
 
@@ -118,7 +132,7 @@ const CameraPage = () => {
               </div>
             ) : (
               <Webcam
-                ref={webcamRef}
+                ref={webcamRef}          // ← same ref, face-api reads .video from this
                 audio={false}
                 mirrored={true}
                 screenshotFormat="image/jpeg"
