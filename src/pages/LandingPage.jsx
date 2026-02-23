@@ -219,7 +219,7 @@ const LandingPage = () => {
         textAlign: "center", padding: "48px",
         color: "#6B6B6B", fontSize: "13px"
       }}>
-        Built with ❤️ using React + face-api.js — FocusLens © 2026
+        © 2026 All Rights Reserved. Made with ♥ by Ayushman Sahoo
       </div>
 
     </div>
