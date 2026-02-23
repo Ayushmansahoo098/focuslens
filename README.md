@@ -16,7 +16,7 @@ You may also see any lint errors in the console.# 🎯 FocusLens — AI Study Fo
 
 FocusLens is an AI-powered productivity assistant that helps students and professionals stay focused during deep work sessions. It uses real-time webcam analysis to detect distraction, drowsiness, and attention, providing live feedback and performance insights.
 
-🔗 **Live Demo:** https://focuslens-eta.vercel.app
+🔗 **Live Demo:** https://ayushman-focuslens.vercel.app/
 
 ---
 
