@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as faceapi from "face-api.js";
+import * as faceapi from "face-api.js/dist/face-api.min.js";
 
 const useFaceDetection = () => {
   const [modelsLoaded, setModelsLoaded] = useState(false);

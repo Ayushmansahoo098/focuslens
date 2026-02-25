@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import * as faceapi from "face-api.js";
+import * as faceapi from "face-api.js/dist/face-api.min.js";
 
 // ─── Tuning Constants ────────────────────────────────────────────────────────
 const DETECTION_INTERVAL_MS = 1000;       // How often we run face detection
