@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
 import useCamera from "../hooks/useCamera";
 import useFocusSession from "../hooks/useFocusSession";
+import WaveLabel from "../components/WaveLabel";
 
 const stateConfig = {
   idle: { label: "Ready to Start", color: "#6B6B6B", bg: "#EDE8F7", dot: "#6B6B6B" },
@@ -221,6 +222,7 @@ const CameraPage = () => {
 
             <button
               onClick={isRunning ? stopSession : startSession}
+              className="wave-btn"
               style={{
                 background: isRunning ? "#fee2e2" : "#A594E0",
                 color: isRunning ? "#dc2626" : "#fff",
@@ -232,14 +234,15 @@ const CameraPage = () => {
                 cursor: "pointer",
                 width: "100%",
               }}
-              onMouseEnter={(e) => (e.target.style.opacity = 0.85)}
-              onMouseLeave={(e) => (e.target.style.opacity = 1)}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.85)}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
             >
-              {isRunning ? "Stop Session" : "Start Session"}
+              <WaveLabel text={isRunning ? "Stop Session" : "Start Session"} />
             </button>
 
             <button
               onClick={resetSession}
+              className="wave-btn"
               style={{
                 background: "#F2EDE4",
                 color: "#1A1A1A",
@@ -251,10 +254,10 @@ const CameraPage = () => {
                 cursor: "pointer",
                 width: "100%",
               }}
-              onMouseEnter={(e) => (e.target.style.opacity = 0.85)}
-              onMouseLeave={(e) => (e.target.style.opacity = 1)}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.85)}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = 1)}
             >
-              Reset
+              <WaveLabel text="Reset" />
             </button>
           </div>
         </div>

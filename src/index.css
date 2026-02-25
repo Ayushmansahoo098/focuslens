@@ -11,3 +11,56 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.footer-main,
+.footer-main:hover,
+.footer-main:focus,
+.footer-main:active {
+  color: #1a1a1a;
+}
+
+.footer-sub,
+.footer-sub:hover,
+.footer-sub:focus,
+.footer-sub:active {
+  color: #6f726d;
+}
+
+.footer-heart,
+.footer-heart:hover,
+.footer-heart:focus,
+.footer-heart:active {
+  color: #ff4b4b;
+}
+
+.wave-btn {
+  overflow: hidden;
+}
+
+.wave-label {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.wave-char {
+  display: inline-block;
+}
+
+.wave-btn:hover .wave-char,
+.wave-btn:focus-visible .wave-char {
+  animation: wave-char 480ms ease;
+  animation-delay: calc(var(--wave-index) * 24ms);
+}
+
+@keyframes wave-char {
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

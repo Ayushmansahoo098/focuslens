@@ -4,6 +4,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer, BarChart, Bar
 } from "recharts";
+import WaveLabel from "../components/WaveLabel";
 
 const mockSessions = [
   { date: "Mon", focusScore: 82, distractions: 4, duration: 25 },
@@ -62,16 +63,18 @@ const DashboardPage = () => {
         <div style={{ display: "flex", gap: "12px" }}>
           <button
             onClick={() => navigate("/")}
+            className="wave-btn"
             style={{
               background: "transparent", color: "#6B6B6B",
               border: "none", fontSize: "14px",
               cursor: "pointer", fontWeight: "500"
             }}
           >
-            Home
+            <WaveLabel text="Home" />
           </button>
           <button
             onClick={() => navigate("/camera")}
+            className="wave-btn"
             style={{
               background: "#A594E0", color: "#fff",
               border: "none", borderRadius: "20px",
@@ -79,7 +82,7 @@ const DashboardPage = () => {
               fontWeight: "600", cursor: "pointer",
             }}
           >
-            Start Session →
+            <WaveLabel text="Start Session →" />
           </button>
         </div>
       </nav>
@@ -139,6 +142,7 @@ const DashboardPage = () => {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
+                  className="wave-btn"
                   style={{
                     background: activeTab === tab.key ? "#A594E0" : "#F2EDE4",
                     color: activeTab === tab.key ? "#fff" : "#6B6B6B",
@@ -148,7 +152,7 @@ const DashboardPage = () => {
                     cursor: "pointer", transition: "all 0.2s"
                   }}
                 >
-                  {tab.label}
+                  <WaveLabel text={tab.label} />
                 </button>
               ))}
             </div>
