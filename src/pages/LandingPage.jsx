@@ -219,7 +219,12 @@ const LandingPage = () => {
         textAlign: "center", padding: "48px",
         color: "#6B6B6B", fontSize: "13px"
       }}>
-        © 2026 All Rights Reserved. Made with ♥ by Ayushman Sahoo
+        <div style={{ fontSize: "16px", fontWeight: "700", marginBottom: "6px" }}>
+          © 2026 All Rights Reserved.
+        </div>
+        <div style={{ fontSize: "14px" }}>
+          made with <span style={{ color: "#FF4B4B" }}>♥</span> by Ayushman
+        </div>
       </div>
 
     </div>
