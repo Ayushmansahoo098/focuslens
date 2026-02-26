@@ -9,7 +9,7 @@
 ![Recharts](https://img.shields.io/badge/Recharts-Analytics-8884D8?style=flat)
 
 ---
-
+Deployed-https://ayushman-focuslens.vercel.app/
 ## ✨ Features
 
 | Feature | Description |
